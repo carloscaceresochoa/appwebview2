@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Manipulacion dom ejercicio 1</title>
+	  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<style>
+
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	margin: 5%;
+
+}
+
+.form-control[readonly]{
+	background-color: white;
+}
+
+
+@media screen and (min-width:601px) {
+
+
+.imagen{
+	width: 50%;
+	height: auto;
+	margin-bottom: 20px;
+}
+button{
+
+	 width: 70%;
+	 margin-bottom: 10px;
+}
+}
+
+@media screen and (max-width: 600px){
+	.imagen{
+	width: 100%;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+button{
+	 width: 100%;
+	 margin-bottom: 10px;
+
+}
+</style>	
+
+</head>
+<body>
+<div class="card" id="panel">
+<div class="card-header bg-success text-white">
+	<center><h4>Conversión Dolares a Pesos Colombianos	</h4></center>
+</div>	
+
+
+<div class="card-body">
+	
+<center><img class="imagen" src="dolar.jpg" alt="imagen" id="imagen">	</center>
+<form id="formulario" method="post">
+<input type="number" placeholder="Digite el numero de dolares"
+id="ndolar" name="ndolar" class="form-control">
+<br>
+<input type="number" placeholder="Valor en Pesos Colombianos"
+id="pesos" name="pesos" class="form-control" readonly>
+<br>
+<center>
+<button id="calcular" class="btn btn-success">Calcular</button>
+<button id="limpiar" class="btn btn-warning">Limpiar</button>
+</center>
+</form>
+</div>
+
+
+</div>
+
+<script>
+
+document.getElementById("calcular").addEventListener("click",function(e){
+	
+	e.preventDefault();
+	var formulario=document.getElementById("formulario");
+	var datos=new FormData(formulario);
+    const VALOR_DOLAR_PESO=4059;
+    let ndolar=parseFloat(datos.get("ndolar"));
+    let pesos=ndolar*VALOR_DOLAR_PESO;
+    let salpesos=pesos.toString();
+    document.getElementById("pesos").value=salpesos;
+    document.getElementById("imagen").src="pesos.jpg";
+
+
+
+
+});
+
+document.getElementById("limpiar").addEventListener("click",function(e){
+e.preventDefault();
+document.getElementById("imagen").src="dolar.jpg";
+document.getElementById("formulario").reset();
+document.getElementById("ndolar").focus();
+});	
+
+</script>
+
+
+</body>
+</html>
